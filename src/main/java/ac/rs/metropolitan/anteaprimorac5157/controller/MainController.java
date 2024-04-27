@@ -20,7 +20,7 @@ public class MainController {
         this.superheroRepository = superheroRepository;
     }
 
-    @GetMapping("/superheroes")
+    @GetMapping("/superheroes-demo")
     public String getSuperheroes() {
         System.out.println("All Superheroes");
         superheroRepository.findAll().forEach(
@@ -30,7 +30,7 @@ public class MainController {
 
         System.out.println("Superheroes with height greater than 200cm");
         superheroRepository.findByHeightCmGreaterThan(200).forEach(
-                superhero -> System.out.println(superhero.getSuperheroName() + " - " + superhero.getHeightCm()));
+                superhero -> System.out.println(superhero.getSuperheroName() + " - " + superhero.getHeightCm() + "cm"));
 
         System.out.println("----------------------------------------------------------------");
 
@@ -73,7 +73,7 @@ public class MainController {
         System.out.println("----------------------------------------------------------------");
         System.out.println("Superheroes with height between 180cm and 200cm");
         superheroRepository.findByHeightCmBetween(180, 200).forEach(
-                superhero -> System.out.println(superhero.getSuperheroName() + " - " + superhero.getHeightCm() + " cm"));
+                superhero -> System.out.println(superhero.getSuperheroName() + " - " + superhero.getHeightCm() + "cm"));
 
         return "index";
     }

@@ -19,4 +19,6 @@ public interface SuperheroRepository extends JpaRepository<Superhero, Long> {
     Superhero findHeroWithMostPowers();
     List<Superhero> findByFullNameContaining(String fullName);
     List<Superhero> findByHeightCmBetween(int min, int max);
+    Superhero findBySuperheroName(String superheroName);
+    List<Superhero> findByPublisher_PublisherName(String publisherName);
 }

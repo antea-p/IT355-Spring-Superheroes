@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ac.rs.metropolitan</groupId>
-	<artifactId>IT355-DZ08-AnteaPrimorac</artifactId>
+	<artifactId>IT355-DZ09-AnteaPrimorac</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>IT355-DZ08-AnteaPrimorac</name>
-	<description>IT355-DZ08-AnteaPrimorac</description>
+	<name>IT355-DZ09-AnteaPrimorac</name>
+	<description>IT355-DZ09-AnteaPrimorac</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

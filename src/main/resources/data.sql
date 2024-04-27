@@ -10787,3 +10787,14 @@ INSERT INTO superhero.hero_power VALUES
 (754,148),
 (755,150),
 (755,155);
+
+CREATE TABLE superhero.users
+(
+    user_id  int          NOT NULL PRIMARY KEY,
+    username varchar(50)  NOT NULL UNIQUE,
+    password varchar(150) NOT NULL
+);
+
+INSERT INTO superhero.users (user_id, username, password)
+VALUES (1, 'jovana', '$2a$12$hJqGL7dZIgEecr8lamjVkOM6fKSvUFWAup8KZhHD0X5ppIzNcsqXK'),
+       (2, 'admin', '$2a$12$hJqGL7dZIgEecr8lamjVkOM6fKSvUFWAup8KZhHD0X5ppIzNcsqXK')

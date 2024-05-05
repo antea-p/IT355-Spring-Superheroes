@@ -14,6 +14,10 @@ public class Publisher {
 
     public Publisher() {}
 
+    public Publisher(String publisherName) {
+        this.publisherName = publisherName;
+    }
+
     public Publisher(Long id, String publisherName) {
         this.id = id;
         this.publisherName = publisherName;
@@ -46,5 +50,13 @@ public class Publisher {
     @Override
     public int hashCode() {
         return Objects.hash(id, publisherName);
+    }
+
+    @Override
+    public String toString() {
+        return "Publisher{" +
+                "id=" + id +
+                ", publisherName=" + publisherName +
+                '}';
     }
 }

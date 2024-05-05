@@ -14,6 +14,10 @@ public class Superpower {
 
     public Superpower() {}
 
+    public Superpower(String powerName) {
+        this.powerName = powerName;
+    }
+
     public Superpower(Long id, String powerName) {
         this.id = id;
         this.powerName = powerName;
@@ -46,5 +50,13 @@ public class Superpower {
     @Override
     public int hashCode() {
         return Objects.hash(id, powerName);
+    }
+
+    @Override
+    public String toString() {
+        return "Superpower{" +
+                "id=" + id +
+                ", powerName=" + powerName +
+                '}';
     }
 }

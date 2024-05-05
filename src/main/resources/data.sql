@@ -10797,4 +10797,11 @@ CREATE TABLE superhero.users
 
 INSERT INTO superhero.users (user_id, username, password)
 VALUES (1, 'jovana', '$2a$12$hJqGL7dZIgEecr8lamjVkOM6fKSvUFWAup8KZhHD0X5ppIzNcsqXK'),
-       (2, 'admin', '$2a$12$hJqGL7dZIgEecr8lamjVkOM6fKSvUFWAup8KZhHD0X5ppIzNcsqXK')
+       (2, 'admin', '$2a$12$hJqGL7dZIgEecr8lamjVkOM6fKSvUFWAup8KZhHD0X5ppIzNcsqXK');
+
+ALTER TABLE superhero.superpower
+    ALTER COLUMN id RESTART WITH 168;
+ALTER TABLE superhero.publisher
+    ALTER COLUMN id RESTART WITH 26;
+ALTER TABLE superhero.superhero
+    ALTER COLUMN id RESTART WITH 757;

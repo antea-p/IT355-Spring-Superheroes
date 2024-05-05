@@ -1,8 +1,10 @@
 package ac.rs.metropolitan.anteaprimorac5157.entity;
 
+import ac.rs.metropolitan.anteaprimorac5157.CollectionUtils;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "superhero", schema = "superhero")
@@ -45,7 +47,7 @@ public class Superhero {
     private Integer heightCm;
     private Integer weightKg;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "hero_power",
             schema = "superhero",
@@ -56,10 +58,26 @@ public class Superhero {
 
     public Superhero() {}
 
-    public Superhero(Long id, String superheroName, Gender gender, Colour eyeColour, Colour hairColour, Colour skinColour,
+    public Superhero(String superheroName, String fullName, Gender gender, Colour eyeColour, Colour hairColour, Colour skinColour, Race race, Publisher publisher, Alignment alignment, Integer heightCm, Integer weightKg, List<Superpower> powers) {
+        this.superheroName = superheroName;
+        this.fullName = fullName;
+        this.gender = gender;
+        this.eyeColour = eyeColour;
+        this.hairColour = hairColour;
+        this.skinColour = skinColour;
+        this.race = race;
+        this.publisher = publisher;
+        this.alignment = alignment;
+        this.heightCm = heightCm;
+        this.weightKg = weightKg;
+        this.powers = powers;
+    }
+
+    public Superhero(Long id, String superheroName, String fullName, Gender gender, Colour eyeColour, Colour hairColour, Colour skinColour,
                      Race race, Publisher publisher, Alignment alignment, int heightCm, int weightKg, List<Superpower> powers) {
         this.id = id;
         this.superheroName = superheroName;
+        this.fullName = fullName;
         this.gender = gender;
         this.eyeColour = eyeColour;
         this.hairColour = hairColour;
@@ -176,5 +194,36 @@ public class Superhero {
         this.powers = powers;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Superhero superhero = (Superhero) o;
+        return Objects.equals(id, superhero.id) && Objects.equals(superheroName, superhero.superheroName) && Objects.equals(fullName, superhero.fullName) && Objects.equals(gender, superhero.gender) && Objects.equals(eyeColour, superhero.eyeColour) && Objects.equals(hairColour, superhero.hairColour) && Objects.equals(skinColour, superhero.skinColour) && Objects.equals(race, superhero.race) && Objects.equals(publisher, superhero.publisher) && Objects.equals(alignment, superhero.alignment) && Objects.equals(heightCm, superhero.heightCm) && Objects.equals(weightKg, superhero.weightKg) && CollectionUtils.equals(powers, superhero.powers);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, superheroName, fullName, gender, eyeColour, hairColour, skinColour, race, publisher, alignment, heightCm, weightKg, powers);
+    }
+
+    @Override
+    public String toString() {
+        return "Superhero{" +
+                "id=" + id +
+                ", superheroName=" + superheroName +
+                ", fullName=" + fullName +
+                ", gender=" + gender +
+                ", eyeColour=" + eyeColour +
+                ", hairColour=" + hairColour +
+                ", skinColour=" + skinColour +
+                ", race=" + race +
+                ", publisher=" + publisher +
+                ", alignment=" + alignment +
+                ", heightCm=" + heightCm +
+                ", weightKg=" + weightKg +
+                ", powers=" + powers +
+                ", weightKG=" + getWeightKG() +
+                '}';
+    }
 }

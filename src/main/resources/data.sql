@@ -249,13 +249,13 @@ CREATE TABLE superhero.superhero (
                                      height_cm INT DEFAULT NULL,
                                      weight_kg INT DEFAULT NULL,
                                      CONSTRAINT pk_superhero PRIMARY KEY (id),
-                                     CONSTRAINT fk_sup_align FOREIGN KEY (alignment_id) REFERENCES superhero.alignment (id),
-                                     CONSTRAINT fk_sup_eyecol FOREIGN KEY (eye_colour_id) REFERENCES superhero.colour (id),
-                                     CONSTRAINT fk_sup_gen FOREIGN KEY (gender_id) REFERENCES superhero.gender (id),
-                                     CONSTRAINT fk_sup_haircol FOREIGN KEY (hair_colour_id) REFERENCES superhero.colour (id),
-                                     CONSTRAINT fk_sup_pub FOREIGN KEY (publisher_id) REFERENCES superhero.publisher (id),
-                                     CONSTRAINT fk_sup_race FOREIGN KEY (race_id) REFERENCES superhero.race (id),
-                                     CONSTRAINT fk_sup_skincol FOREIGN KEY (skin_colour_id) REFERENCES superhero.colour (id)
+                                     CONSTRAINT fk_sup_align FOREIGN KEY (alignment_id) REFERENCES superhero.alignment (id) ON DELETE CASCADE,
+                                     CONSTRAINT fk_sup_eyecol FOREIGN KEY (eye_colour_id) REFERENCES superhero.colour (id) ON DELETE CASCADE,
+                                     CONSTRAINT fk_sup_gen FOREIGN KEY (gender_id) REFERENCES superhero.gender (id) ON DELETE CASCADE,
+                                     CONSTRAINT fk_sup_haircol FOREIGN KEY (hair_colour_id) REFERENCES superhero.colour (id) ON DELETE CASCADE,
+                                     CONSTRAINT fk_sup_pub FOREIGN KEY (publisher_id) REFERENCES superhero.publisher (id) ON DELETE CASCADE,
+                                     CONSTRAINT fk_sup_race FOREIGN KEY (race_id) REFERENCES superhero.race (id) ON DELETE CASCADE,
+                                     CONSTRAINT fk_sup_skincol FOREIGN KEY (skin_colour_id) REFERENCES superhero.colour (id) ON DELETE CASCADE
 );
 
 
@@ -1205,7 +1205,7 @@ CREATE TABLE superhero.hero_attribute (
   attribute_id INT DEFAULT NULL,
   attribute_value INT DEFAULT NULL,
   CONSTRAINT fk_hat_at FOREIGN KEY (attribute_id) REFERENCES superhero.attribute (id),
-  CONSTRAINT fk_hat_hero FOREIGN KEY (hero_id) REFERENCES superhero.superhero (id)
+  CONSTRAINT fk_hat_hero FOREIGN KEY (hero_id) REFERENCES superhero.superhero (id) ON DELETE CASCADE
 );
 
 
@@ -4956,8 +4956,8 @@ DROP TABLE IF EXISTS superhero.hero_power;
 CREATE TABLE superhero.hero_power (
   hero_id INT DEFAULT NULL,
   power_id INT DEFAULT NULL,
-  CONSTRAINT fk_hpo_hero FOREIGN KEY (hero_id) REFERENCES superhero.superhero (id),
-  CONSTRAINT fk_hpo_po FOREIGN KEY (power_id) REFERENCES superhero.superpower (id)
+  CONSTRAINT fk_hpo_hero FOREIGN KEY (hero_id) REFERENCES superhero.superhero (id) ON DELETE CASCADE,
+  CONSTRAINT fk_hpo_po FOREIGN KEY (power_id) REFERENCES superhero.superpower (id) ON DELETE CASCADE
 );
 
 

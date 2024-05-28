@@ -2,22 +2,22 @@ package ac.rs.metropolitan.anteaprimorac5157.controller;
 
 import ac.rs.metropolitan.anteaprimorac5157.entity.Publisher;
 import ac.rs.metropolitan.anteaprimorac5157.repository.PublisherRepository;
-
-import javax.jms.Destination;
-import javax.jms.JMSException;
-import javax.jms.MapMessage;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.support.JmsUtils;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.MapMessage;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/publisher")
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials = "true")
 public class PublisherController {
     private final PublisherRepository publisherRepository;
     private JmsTemplate jmsTemplate;
@@ -63,6 +63,7 @@ public class PublisherController {
         return ResponseEntity.ok(publisherRepository.findByPublisherName(publisherName));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/{publisherId}/newPublication")
     public ResponseEntity<Publisher> newPublication(@PathVariable Long publisherId) {
         Optional<Publisher> publisherOptional = publisherRepository.findById(publisherId);
@@ -84,16 +85,19 @@ public class PublisherController {
         });
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<Publisher> save(@RequestBody Publisher publisher) {
         return ResponseEntity.ok(publisherRepository.save(publisher));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping
     public ResponseEntity<Publisher> update(@RequestBody Publisher publisher) {
         return ResponseEntity.ok(publisherRepository.save(publisher));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{publisherId}")
     public void deleteById(@PathVariable Long publisherId) {
         publisherRepository.deleteById(publisherId);

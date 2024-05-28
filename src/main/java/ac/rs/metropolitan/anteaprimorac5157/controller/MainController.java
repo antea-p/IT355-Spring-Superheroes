@@ -4,6 +4,7 @@ import ac.rs.metropolitan.anteaprimorac5157.entity.Superhero;
 import ac.rs.metropolitan.anteaprimorac5157.repository.SuperheroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/")
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials = "true")
 public class MainController {
 
     private final SuperheroRepository superheroRepository;

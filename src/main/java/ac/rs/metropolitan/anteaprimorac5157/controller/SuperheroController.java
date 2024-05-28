@@ -4,12 +4,14 @@ import ac.rs.metropolitan.anteaprimorac5157.entity.Superhero;
 import ac.rs.metropolitan.anteaprimorac5157.repository.SuperheroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/superhero")
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials = "true")
 public class SuperheroController {
     private final SuperheroRepository superheroRepository;
 
@@ -30,16 +32,19 @@ public class SuperheroController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     public ResponseEntity<Superhero> save(@RequestBody Superhero superhero) {
         return ResponseEntity.ok(superheroRepository.save(superhero));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping
     public ResponseEntity<Superhero> update(@RequestBody Superhero superhero) {
         return ResponseEntity.ok(superheroRepository.save(superhero));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{superheroId}")
     public void deleteById(@PathVariable Long superheroId) {
         superheroRepository.deleteById(superheroId);

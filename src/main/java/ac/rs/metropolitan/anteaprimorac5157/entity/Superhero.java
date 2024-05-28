@@ -16,38 +16,38 @@ public class Superhero {
     private String superheroName;
     private String fullName;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "gender_id", nullable = false)
     private Gender gender;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "eye_colour_id", nullable = false)
     private Colour eyeColour;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "hair_colour_id", nullable = false)
     private Colour hairColour;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "skin_colour_id", nullable = false)
     private Colour skinColour;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "race_id", nullable = false)
     private Race race;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "publisher_id", nullable = false)
     private Publisher publisher;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "alignment_id", nullable = false)
     private Alignment alignment;
 
     private Integer heightCm;
     private Integer weightKg;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "hero_power",
             schema = "superhero",
